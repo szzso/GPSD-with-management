@@ -1,1 +1,3 @@
-gpsd-3.16
+# GPSD to new GPS management interface
+GPSD have management interfce.
+ GPSD can stop the track. 
