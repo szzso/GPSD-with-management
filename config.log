@@ -1,0 +1,652 @@
+file /home/szezso/gpsd-3.16/SConstruct,line 496:
+	Configure(confdir = .sconf_temp)
+scons: Configure: Checking if compiler accepts -Wextra ...
+scons: Configure: ".sconf_temp/conftest_0.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_0.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_0.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_0.o -c -Wmissing-prototypes -Wextra -Wmissing-declarations -O2 .sconf_temp/conftest_0.c
+  |
+scons: Configure: ".sconf_temp/conftest_0" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_0 .sconf_temp/conftest_0.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wall ...
+scons: Configure: ".sconf_temp/conftest_1.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_1.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_1.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_1.o -c -Wmissing-prototypes -Wextra -Wall -Wmissing-declarations -O2 .sconf_temp/conftest_1.c
+  |
+scons: Configure: ".sconf_temp/conftest_1" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_1 .sconf_temp/conftest_1.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wno-uninitialized ...
+scons: Configure: ".sconf_temp/conftest_2.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_2.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_2.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_2.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wmissing-declarations -O2 .sconf_temp/conftest_2.c
+  |
+scons: Configure: ".sconf_temp/conftest_2" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_2 .sconf_temp/conftest_2.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wno-missing-field-initializers ...
+scons: Configure: ".sconf_temp/conftest_3.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_3.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_3.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_3.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wmissing-declarations -O2 .sconf_temp/conftest_3.c
+  |
+scons: Configure: ".sconf_temp/conftest_3" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_3 .sconf_temp/conftest_3.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wcast-align ...
+scons: Configure: ".sconf_temp/conftest_4.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_4.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_4.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_4.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -O2 .sconf_temp/conftest_4.c
+  |
+scons: Configure: ".sconf_temp/conftest_4" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_4 .sconf_temp/conftest_4.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wmissing-declarations ...
+scons: Configure: ".sconf_temp/conftest_5.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_5.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_5.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_5.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wmissing-declarations -O2 .sconf_temp/conftest_5.c
+  |
+scons: Configure: ".sconf_temp/conftest_5" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_5 .sconf_temp/conftest_5.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wstrict-prototypes ...
+scons: Configure: ".sconf_temp/conftest_6.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_6.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_6.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_6.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wmissing-declarations -O2 .sconf_temp/conftest_6.c
+  |
+scons: Configure: ".sconf_temp/conftest_6" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_6 .sconf_temp/conftest_6.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wpointer-arith ...
+scons: Configure: ".sconf_temp/conftest_7.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_7.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_7.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_7.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wmissing-declarations -O2 .sconf_temp/conftest_7.c
+  |
+scons: Configure: ".sconf_temp/conftest_7" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_7 .sconf_temp/conftest_7.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -Wreturn-type ...
+scons: Configure: ".sconf_temp/conftest_8.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_8.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_8.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_8.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -Wmissing-declarations -O2 .sconf_temp/conftest_8.c
+  |
+scons: Configure: ".sconf_temp/conftest_8" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_8 .sconf_temp/conftest_8.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler accepts -pthread ...
+scons: Configure: ".sconf_temp/conftest_9.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_9.c <-
+  |  |
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_9.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_9.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 .sconf_temp/conftest_9.c
+  |
+scons: Configure: ".sconf_temp/conftest_9" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_9 .sconf_temp/conftest_9.o
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking whether the C++ compiler works... 
+scons: Configure: ".sconf_temp/conftest_10.cpp" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_10.cpp <-
+  |  |
+  |  |int main()
+  |  |{
+  |  |    return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_10.o" is up to date.
+scons: Configure: The original builder output was:
+  |g++ -o .sconf_temp/conftest_10.o -c -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_10.cpp
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for ncurses... 
+scons: Configure: Building ".sconf_temp/conftest_11" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'ncurses'
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for libusb-1.0... 
+scons: Configure: Building ".sconf_temp/conftest_12" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'libusb-1.0'
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C library librt... 
+scons: Configure: ".sconf_temp/conftest_13.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_13.c <-
+  |  |
+  |  |
+  |  |
+  |  |int
+  |  |main() {
+  |  |  
+  |  |return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_13.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_13.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_13.c
+  |
+scons: Configure: ".sconf_temp/conftest_13" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_13 -pthread .sconf_temp/conftest_13.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for dbus-1... 
+scons: Configure: Building ".sconf_temp/conftest_14" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'dbus-1'
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for bluez... 
+scons: Configure: Building ".sconf_temp/conftest_15" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'bluez'
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C type in_port_t... 
+scons: Configure: ".sconf_temp/conftest_16.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_16.c <-
+  |  |
+  |  |
+  |  |#include <netinet/in.h>
+  |  |
+  |  |int main() {
+  |  |  if ((in_port_t *) 0)
+  |  |    return 0;
+  |  |  if (sizeof (in_port_t))
+  |  |    return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_16.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_16.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_16.c
+  |
+scons: Configure: ".sconf_temp/conftest_16" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_16 -pthread .sconf_temp/conftest_16.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking whether SUN_LEN is declared... 
+scons: Configure: ".sconf_temp/conftest_17.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_17.c <-
+  |  |#include <sys/un.h>
+  |  |int main()
+  |  |{
+  |  |#ifndef SUN_LEN
+  |  |    (void) SUN_LEN;
+  |  |#endif
+  |  |    ;
+  |  |    return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_17.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_17.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_17.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file linux/can.h... 
+scons: Configure: ".sconf_temp/conftest_18.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_18.c <-
+  |  |#include <bits/sockaddr.h>
+  |  |
+  |  |#include <linux/can.h>
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_18.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_18.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_18.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler is C11 ...
+scons: Configure: ".sconf_temp/conftest_19.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_19.c <-
+  |  |
+  |  |	#if (__STDC_VERSION__ < 201112L)
+  |  |        #error Not C11
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_19.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_19.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_19.c
+  |
+scons: Configure: ".sconf_temp/conftest_19" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_19 -pthread .sconf_temp/conftest_19.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler supplies __STDC_NO_ATOMICS__ ...
+scons: Configure: ".sconf_temp/conftest_20.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_20.c <-
+  |  |
+  |  |        #ifndef __STDC_NO_ATOMICS__
+  |  |        #error __STDC_NO_ATOMICS__ is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: Building ".sconf_temp/conftest_20.o" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_20.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_20.c
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C header file stdatomic.h... 
+scons: Configure: ".sconf_temp/conftest_21.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_21.c <-
+  |  |
+  |  |#include <stdatomic.h>
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_21.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_21.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_21.c
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler supplies __ORDER_BIG_ENDIAN__ ...
+scons: Configure: ".sconf_temp/conftest_22.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_22.c <-
+  |  |
+  |  |        #ifndef __ORDER_BIG_ENDIAN__
+  |  |        #error __ORDER_BIG_ENDIAN__ is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_22.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_22.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_22.c
+  |
+scons: Configure: ".sconf_temp/conftest_22" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_22 -pthread .sconf_temp/conftest_22.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler supplies __ORDER_LITTLE_ENDIAN__ ...
+scons: Configure: ".sconf_temp/conftest_23.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_23.c <-
+  |  |
+  |  |        #ifndef __ORDER_LITTLE_ENDIAN__
+  |  |        #error __ORDER_LITTLE_ENDIAN__ is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_23.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_23.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_23.c
+  |
+scons: Configure: ".sconf_temp/conftest_23" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_23 -pthread .sconf_temp/conftest_23.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking if compiler supplies __BYTE_ORDER__ ...
+scons: Configure: ".sconf_temp/conftest_24.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_24.c <-
+  |  |
+  |  |        #ifndef __BYTE_ORDER__
+  |  |        #error __BYTE_ORDER__ is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_24.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_24.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_24.c
+  |
+scons: Configure: ".sconf_temp/conftest_24" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_24 -pthread .sconf_temp/conftest_24.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function daemon()... 
+scons: Configure: ".sconf_temp/conftest_25.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_25.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char daemon();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_daemon) || defined (__stub___daemon)
+  |  |  fail fail fail
+  |  |#else
+  |  |  daemon();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_25.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_25.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_25.c
+  |
+scons: Configure: ".sconf_temp/conftest_25" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_25 -pthread .sconf_temp/conftest_25.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C function strlcpy()... 
+scons: Configure: ".sconf_temp/conftest_26.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_26.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char strlcpy();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_strlcpy) || defined (__stub___strlcpy)
+  |  |  fail fail fail
+  |  |#else
+  |  |  strlcpy();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_26.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_26.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_26.c
+  |
+scons: Configure: Building ".sconf_temp/conftest_26" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_26 -pthread .sconf_temp/conftest_26.o -L. -lrt
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C function strlcat()... 
+scons: Configure: ".sconf_temp/conftest_27.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_27.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char strlcat();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_strlcat) || defined (__stub___strlcat)
+  |  |  fail fail fail
+  |  |#else
+  |  |  strlcat();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_27.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_27.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_27.c
+  |
+scons: Configure: Building ".sconf_temp/conftest_27" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_27 -pthread .sconf_temp/conftest_27.o -L. -lrt
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C function clock_gettime()... 
+scons: Configure: ".sconf_temp/conftest_28.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_28.c <-
+  |  |
+  |  |
+  |  |#include <assert.h>
+  |  |
+  |  |#ifdef __cplusplus
+  |  |extern "C"
+  |  |#endif
+  |  |char clock_gettime();
+  |  |
+  |  |int main() {
+  |  |#if defined (__stub_clock_gettime) || defined (__stub___clock_gettime)
+  |  |  fail fail fail
+  |  |#else
+  |  |  clock_gettime();
+  |  |#endif
+  |  |
+  |  |  return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_28.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_28.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_28.c
+  |
+scons: Configure: ".sconf_temp/conftest_28" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_28 -pthread .sconf_temp/conftest_28.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C header file sys/timepps.h... 
+scons: Configure: ".sconf_temp/conftest_29.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_29.c <-
+  |  |#include <sys/types.h>
+  |  |#include <sys/time.h>
+  |  |
+  |  |#include <sys/timepps.h>
+  |  |
+  |  |
+  |
+scons: Configure: Building ".sconf_temp/conftest_29.o" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_29.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_29.c
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking if sys/ioctl.h supplies TIOCMIWAIT ...
+scons: Configure: ".sconf_temp/conftest_30.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_30.c <-
+  |  |
+  |  |        #include <sys/ioctl.h>
+  |  |        #ifndef TIOCMIWAIT
+  |  |        #error TIOCMIWAIT is not defined
+  |  |        #endif
+  |  |        int main(int argc, char **argv) {
+  |  |            return 0;
+  |  |        }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_30.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_30.o -c -Wmissing-prototypes -Wextra -Wall -Wno-uninitialized -Wno-missing-field-initializers -Wcast-align -Wmissing-declarations -Wstrict-prototypes -Wpointer-arith -Wreturn-type -pthread -Wmissing-declarations -O2 -pthread .sconf_temp/conftest_30.c
+  |
+scons: Configure: ".sconf_temp/conftest_30" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_30 -pthread .sconf_temp/conftest_30.o -L. -lrt
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking that xsltproc can make man pages... 
+scons: Configure: Building ".sconf_temp/conftest_31" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |xsltproc --nonet --noout 'http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl' xmltest.xml
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for QtNetwork... 
+scons: Configure: Building ".sconf_temp/conftest_32" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |pkg-config --exists 'QtNetwork'
+  |
+scons: Configure: (cached) no
+
+
