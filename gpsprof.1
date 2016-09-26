@@ -1,0 +1,158 @@
+'\" t
+.\"     Title: gpsprof
+.\"    Author: [see the "AUTHOR" section]
+.\" Generator: DocBook XSL Stylesheets v1.79.1 <http://docbook.sf.net/>
+.\"      Date: 10 Feb 2005
+.\"    Manual: GPSD Documentation
+.\"    Source: The GPSD Project
+.\"  Language: English
+.\"
+.TH "GPSPROF" "1" "10 Feb 2005" "The GPSD Project" "GPSD Documentation"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+gpsprof \- profile a GPS and gpsd, plotting latency information
+.SH "SYNOPSIS"
+.HP \w'\fBgpsprof\fR\ 'u
+\fBgpsprof\fR [\-f\ \fIplot_type\fR] [\-m\ \fIthreshold\fR] [\-n\ \fIpacketcount\fR] [\-t\ \fItitle\fR] [\-T\ \fIterminal\fR] [\-d\ \fIdumpfile\fR] [\-l\ \fIlogfile\fR] [\-r] [\-D\ \fIdebuglevel\fR] [\-h] [[server[:port[:device]]]]
+.SH "DESCRIPTION"
+.PP
+gpsprof
+performs accuracy, latency, and time drift profiling on a GPS\&. It emits to standard output a GNUPLOT program that draws one of several illustrative graphs\&. It can also be told to emit the raw profile data\&.
+.PP
+Information from the default spatial plot it provides can be useful for establishing an upper bound on latency, and thus on position accuracy of a GPS in motion\&.
+.PP
+gpsprof
+uses instrumentation built into
+gpsd\&.
+.PP
+To display the graph, use
+\fBgnuplot\fR(1)\&. Thus, for example, to display the default spatial scatter plot, do this:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+gpsprof | gnuplot \-persist
+.fi
+.if n \{\
+.RE
+.\}
+.PP
+To generate an image file:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+gpsprof \-T png | gnuplot >image\&.png
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.SH "OPTIONS"
+.PP
+The \-f option sets the plot type\&. The X axis is samples (either sentences with timestamps or PPS time drift messages)\&. The Y axis is normally latency in seconds, except for the spatial plot\&. Currently the following plot types are defined:
+.PP
+space
+.RS 4
+Generate a scattergram of fixes and plot a probable\-error circle\&. This data is only meaningful if the GPS is held stationary while
+gpsprof
+is running\&. This is the default\&.
+.RE
+.PP
+time
+.RS 4
+Plot delta of system clock (NTP corrected time) against GPS time as reported in PPS messages\&.
+.RE
+.PP
+uninstrumented
+.RS 4
+Plot total latency without instrumentation\&. Useful mainly as a check that the instrumentation is not producing significant distortion\&. It only plots times for reports that contain fixes; staircase\-like artifacts in the plot are created when elapsed time from reports without fixes is lumped in\&.
+.RE
+.PP
+instrumented
+.RS 4
+Plot instrumented profile\&. Plots various components of the total latency between the GPS\*(Aqs fix time fix and when the client receives the fix\&.
+.RE
+.PP
+For purposes of the description, below, start\-of\-reporting\-cycle (SORC) is when a device\*(Aqs reporting cycle begins\&. This time is detected by watching to see when data availability follows a long enough amount of quiet time that we can be sure we\*(Aqve seen the gap at the end of the sensor\*(Aqs previous report\-transmission cycle\&. Detecting this gap requires a device running at 9600bps or faster\&.
+.PP
+Similarly, EORC is end\-of\-reporting\-cycle; when the daemon has seen the last sentence it needs in the reporting cycle and ready to ship a fix to the client\&.
+.PP
+The components of the instrumented plot are as follows:
+.PP
+Fix latency
+.RS 4
+Delta between GPS time and SORC\&.
+.RE
+.PP
+RS232 time
+.RS 4
+RS232 transmission time for data shipped during the cycle (computed from character volume and baud rate)\&.
+.RE
+.PP
+Analysis time
+.RS 4
+EORC, minus SORC, minus RS232 time\&. The amount of real time the daemon spent on computation rather than I/O\&.
+.RE
+.PP
+Reception time
+.RS 4
+Shipping time from the daemon to when it was received by
+gpsprof\&.
+.RE
+.PP
+Because of RS232 buffering effects, the profiler sometimes generates reports of ridiculously high latencies right at the beginning of a session\&. The \-m option lets you set a latency threshold, in multiples of the cycle time, above which reports are discarded\&.
+.PP
+The \-n option sets the number of packets to sample\&. The default is 100\&.
+.PP
+The \-t option sets a text string to be included in the plot title\&.
+.PP
+The \-T option generates a terminal type setting into the gnuplot code\&. Typical usage is "\-T png" telling gnuplot to write a PNG file\&. Without this option gnuplot will call its X11 display code\&.
+.PP
+The \-d option dumps the plot data, without attached gnuplot code, to a specified file for post\-analysis\&.
+.PP
+The \-l option dumps the raw JSON reports collected from the device to a specified file\&.
+.PP
+The \-r option replots from a JSON logfile (such as \-l produces) on standard input\&. Both \-n and \-l options are ignored when this one is selected\&.
+.PP
+The \-h option makes
+gpsprof
+print a usage message and exit\&.
+.PP
+The \-D sets debug level\&.
+.PP
+Sending SIGUSR1 to a running instance causes it to write a completion message to standard error and resume processing\&. The first number in the startup message is the process ID to signal\&.
+.SH "SEE ALSO"
+.PP
+\fBgpsd\fR(8),
+\fBgps\fR(1),
+\fBlibgps\fR(3),
+\fBlibgpsd\fR(3),
+\fBgpsfake\fR(1),
+\fBgpsctl\fR(1),
+\fBgpscat\fR(1),
+\fBgnuplot\fR(1)\&.
+.SH "AUTHOR"
+.PP
+Eric S\&. Raymond
+<esr@thyrsus\&.com>\&.

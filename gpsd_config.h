@@ -6,13 +6,13 @@
 
 #define GPSD_URL "http://catb.org/gpsd"
 
-/* #undef HAVE_LIBUSB */
+#define HAVE_LIBUSB 1
 
 #define HAVE_LIBRT 1
 
-/* #undef HAVE_DBUS */
+#define HAVE_DBUS 1
 
-/* #undef ENABLE_BLUEZ */
+#define ENABLE_BLUEZ 1
 
 #define HAVE_LINUX_CAN_H 1
 
@@ -42,7 +42,7 @@
 #define BINDIR "bin"
 
 /* BlueZ support for Bluetooth devices */
-/* #undef BLUEZ_ENABLE */
+#define BLUEZ_ENABLE 1
 
 /* client debugging support */
 #define CLIENTDEBUG_ENABLE 1
@@ -57,7 +57,7 @@
 /* #undef COVERAGING_ENABLE */
 
 /* enable DBUS export support */
-/* #undef DBUS_EXPORT_ENABLE */
+#define DBUS_EXPORT_ENABLE 1
 
 /* include debug information in build */
 /* #undef DEBUG_ENABLE */

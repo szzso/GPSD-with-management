@@ -665,7 +665,7 @@ class TestSession:
                 # TIOCDRAIN will hang, otherwise.
 
                 if not self.queue.empty():
-                    print "Queue not empty"
+                    #print "Queue not empty"
                     self.processingcommand()
 
 

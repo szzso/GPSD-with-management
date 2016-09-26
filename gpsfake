@@ -19,32 +19,20 @@ import time
 import socket
 import sys
 import Queue
+from tempfile import NamedTemporaryFile
 from threading import Thread
-
-
-class Command():
-    def __init__(self):
-        self.command = ""
-        self.sentence = []
-
-    def getCommand(self):
-        print 'Get'
-
-    def newCommand(self):
-        print 'Set'
-
-
+from random import randint
 
 
 class TCPThread(Thread):
 
-    def __init__(self, queue):
+    def __init__(self, queue, managementport):
         ''' Constructor. '''
         Thread.__init__(self)
         self.queue = queue
         self.running = True
-
-
+        self.daemon = True
+        self.port = managementport
 
     # Function for handling connections. This will be used to create threads
     def clientthread(self, conn):
@@ -53,79 +41,102 @@ class TCPThread(Thread):
 
         file = False
         manual = False
-        f = None
-        tmp = ""
+        self.tmp = ""
+
         # infinite loop so that function do not terminate and thread do not end.
-        while True and self.running:
+        while self.running:
             # Receiving from client
-            data = conn.recv(1024)
+            try:
+                data = conn.recv(1024)
 
-            if "file-begin" in data:
-                print "File comming"
-                file = True
-                path = 'Dokumentumok/newTrack.nmea'
-                f = open(path,'wt')
-                data.replace('file-begin', '')
-                continue
-            elif "file-end" in data:
-                print "File arrived"
-                file = False
-                conn.sendall("OK... file recived")
+                if "file-begin" in data:
+                    print "File comming"
+                    file = True
+                    f = NamedTemporaryFile(delete=False)
 
-                data = data.replace('file-end', '')
-                f.write(data)
-                f.close()
-                self.queue.put("file," + path)
-                reply = 'OK...file recived'
-                conn.sendall(reply)
-                continue
-            elif "manual-begin" in data:
-                print "Manual begin"
-                manual = True
-                data = data.replace('manual-begin', '')
-                self.queue.put("manual-begin")
-            elif "manual-end" in data:
-                print "Manual-end"
-                manual = False
-                data = data.replace('manual-end', '')
-                self.queue.put("manual-end")
+                    data.replace('file-begin', '')
+                    f.write(data)
+                    continue
+                elif "file-end" in data:
+                    print "File arrived"
+                    file = False
+                    conn.sendall("OK... file recived")
+                    path = f.name
+                    data = data.replace('file-end', '')
+                    f.write(data)
+                    f.close()
 
-            if file:
-                f.write(data)
-            elif manual:
-                if "$" in data:
-                    #print "Data: " + data
-                    sentence = data.split('/n')
-                    for i in sentence:
-                        print i
-                        if not "*" in i:
-                            tmp += i
-                        else:
-                            self.queue.put(i)
-            elif data:
-                self.queue.put(data)
-                reply = 'OK...' + data
-                conn.sendall(reply)
-            #print 'From client ' + data
-            #if not data:
-            #    break
+                    self.queue.put("file," + path)
+                    reply = 'OK...file recived'
+                    conn.sendall(reply)
+                    continue
+                elif "manual-begin" in data:
+                    print "Manual begin"
+                    manual = True
+                    data = data.replace('manual-begin', '')
+                    self.queue.put("manual-begin")
+                    path = 'manualTrack.nmea'
+                    self.f = open(path, 'wt')
+                    data.replace('file-begin', '')
+                    self.readNMEA(data, self.tmp)
+                elif "manual-end" in data:
+                    print "Manual-end"
+                    manual = False
+                    data = data.replace('manual-end', '')
 
-
+                    self.readNMEA(data, self.tmp)
+                    self.f.close()
+                    self.queue.put("manual-end")
+                elif file:
+                    f.write(data)
+                elif manual:
+                    self.readNMEA(data, self.tmp)
+                elif data:
+                    self.queue.put(data)
+                    reply = 'OK...' + data
+                    conn.sendall(reply)
+                #print 'From client ' + data
+                elif not data:
+                    print "No data: " + data
+                    break
+            except socket.error as ex:
+                if str(ex) == "[Errno 35] Resource temporarily unavailable":
+                    time.sleep(0)
+                    continue
+                raise ex
 
         # came out of loop
         print 'Close listening'
 
+    def readNMEA(self, data, tmp):
+        if tmp != "":
+            data = tmp + data
+            tmp = ""
+
+        if "$" in data:
+            # print "Data: " + data
+
+            sentence = data.split('/n')
+            for i in sentence:
+                #print i
+                self.f.write(i)
+                if not "*" in i:
+                    tmp += i
+                    print "tmp: "+ tmp
+                else:
+                    self.queue.put(i)
 
 
     def run(self):
         HOST = ''  # Symbolic name meaning all available interfaces
-        PORT = 8888  # Arbitrary non-privileged port
+        #PORT = 8888
         soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         print 'Socket created'
 
         # Bind socket to local host and port
         try:
-            soc.bind((HOST, PORT))
+            soc.bind((HOST, self.port))
         except socket.error as msg:
             print 'Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
             sys.exit()
@@ -133,19 +144,26 @@ class TCPThread(Thread):
         print 'Socket bind complete'
 
         # Start listening on socket
-        soc.listen(10)
+        soc.listen(1)
         print 'Socket now listening'
 
         # now keep talking with the client
-        while 1 and self.running:
-            soc.settimeout(10)
-            # wait to accept a connection - blocking call
-            conn, addr = soc.accept()
+        while self.running:
+            try:
 
-            print 'Connected with ' + addr[0] + ':' + str(addr[1])
-            soc.settimeout(None)
-            # start new thread takes 1st argument as a function name to be run, second is the tuple of arguments to the function.
-            self.clientthread(conn)
+                # wait to accept a connection - blocking call
+                conn, addr = soc.accept()
+
+                print 'Connected with ' + addr[0] + ':' + str(addr[1])
+                self.clientthread(conn)
+            except socket.error as msg:
+                if msg[0] == 104:
+                    print "Disconnected client: " + addr[0] + ':' + str(addr[1])
+                else:
+                    print msg
+            finally:
+                conn.close()
+
         conn.close()
         print 'Close thread'
 
@@ -230,7 +248,7 @@ def fakehook(linenumber, fakegps):
 
 if __name__ == '__main__':
     try:
-        (options, arguments) = getopt.getopt(sys.argv[1:], "1bc:D:ghilm:no:pP:r:s:StTuvx")
+        (options, arguments) = getopt.getopt(sys.argv[1:], "1bc:D:ghilm:no:pP:rM:s:StTuvx")
     except getopt.GetoptError, msg:
         print "gpsfake: " + str(msg)
         raise SystemExit, 1
@@ -251,6 +269,8 @@ if __name__ == '__main__':
     udp = False
     verbose = 0
     slow = False
+    managementport = None
+
 
     for (switch, val) in options:
         if switch == '-1':
@@ -294,9 +314,12 @@ if __name__ == '__main__':
             udp = True
         elif switch == '-v':
             verbose += 1
+        elif switch == '-M':
+            managementport = int(val)
         elif switch == '-h':
             sys.stderr.write("usage: gpsfake [-h] [-l] [-m monitor] [--D debug] [-o options] [-p] [-s speed] [-S] [-c cycle] [-b] logfile\n")
             raise SystemExit, 0
+
 
     try:
         pty.openpty()
@@ -317,8 +340,17 @@ if __name__ == '__main__':
     if port is None and not pipe:
         port = gps.GPSD_PORT
 
+    if managementport is None:
+        managementport = randint(20000,65000)
+        print "Management port: " + str(managementport)
+
     queue = Queue.Queue()
-    mythread = TCPThread(queue)
+    tmppath = "workdir"
+    # Ensure the file is read/write by the creator only
+    saved_umask = os.umask(0077)
+
+
+    mythread = TCPThread(queue, managementport)
     mythread.start()
 
 
@@ -379,11 +411,10 @@ if __name__ == '__main__':
             sys.stderr.write("gpsfake: aborted\n")
             raise SystemExit, 1
     finally:
+        mythread.running = False
         test.cleanup()
 
 
-
-    mythread.running = False
 
     print 'Close program, running: %r' % mythread.running
     if progress:
