@@ -37,7 +37,7 @@ class TCPThread(Thread):
     # Function for handling connections. This will be used to create threads
     def clientthread(self, conn):
         # Sending message to connected client
-        conn.send('Welcome to the server. Type something and hit enter\n')  # send only takes string
+        conn.send('Welcome to the Gpsfake management interface.\n')  # send only takes string
 
         file = False
         manual = False
@@ -248,7 +248,7 @@ def fakehook(linenumber, fakegps):
 
 if __name__ == '__main__':
     try:
-        (options, arguments) = getopt.getopt(sys.argv[1:], "1bc:D:ghilm:no:pP:rM:s:StTuvx")
+        (options, arguments) = getopt.getopt(sys.argv[1:], "1bc:D:ghilm:no:pP:rfM:s:StTuvx")
     except getopt.GetoptError, msg:
         print "gpsfake: " + str(msg)
         raise SystemExit, 1
@@ -270,6 +270,8 @@ if __name__ == '__main__':
     verbose = 0
     slow = False
     managementport = None
+    management = False
+    withoutfile = False
 
 
     for (switch, val) in options:
@@ -315,11 +317,16 @@ if __name__ == '__main__':
         elif switch == '-v':
             verbose += 1
         elif switch == '-M':
+            management = True
             managementport = int(val)
+        elif switch == '-f':
+            withoutfile = True
         elif switch == '-h':
             sys.stderr.write("usage: gpsfake [-h] [-l] [-m monitor] [--D debug] [-o options] [-p] [-s speed] [-S] [-c cycle] [-b] logfile\n")
             raise SystemExit, 0
 
+
+    print "File: " + str(withoutfile)
 
     try:
         pty.openpty()
@@ -331,7 +338,7 @@ if __name__ == '__main__':
         print >>sys.stderr, "gpsfake: requires at least one logfile argument."
         raise SystemExit, 1
 
-    if progress:
+    if progress and arguments:
         baton = Baton("Processing %s" % ",".join(arguments), "done")
     else:
         print >>sys.stderr, "Processing %s" % ",".join(arguments)
@@ -340,7 +347,7 @@ if __name__ == '__main__':
     if port is None and not pipe:
         port = gps.GPSD_PORT
 
-    if managementport is None:
+    if management and managementport is None:
         managementport = randint(20000,65000)
         print "Management port: " + str(managementport)
 
@@ -399,7 +406,7 @@ if __name__ == '__main__':
                 # This needs to increase if leading sentences in
                 # test loads aren't being processed.
                 time.sleep(1)
-            test.run()
+            test.run(withoutfile)
 
         except socket.error, msg:
             sys.stderr.write("gpsfake: socket error %s.\n" % msg)

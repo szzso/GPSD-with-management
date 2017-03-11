@@ -655,10 +655,11 @@ class TestSession:
 
 
 
-    def run(self):
+    def run(self, withoutfile):
         "Run the tests."
         try:
             self.progress("gpsfake: test loop begins\n")
+            commandarrived = 0
             while self.daemon:
                 # We have to read anything that gpsd might have tried
                 # to send to the GPS here -- under OpenBSD the
@@ -667,41 +668,44 @@ class TestSession:
                 if not self.queue.empty():
                     #print "Queue not empty"
                     self.processingcommand()
+                    commandarrived = commandarrived + 1
+                    if commandarrived > 1:
+                        withoutfile = False
 
+                if not withoutfile:
+                    for device in self.runqueue:
+                        if isinstance(device, FakeGPS):
+                            device.read()
+                    had_output = False
+                    chosen = self.choose()
 
-                for device in self.runqueue:
-                    if isinstance(device, FakeGPS):
-                        device.read()
-                had_output = False
-                chosen = self.choose()
-
-                if isinstance(chosen, FakeGPS):
-                    if chosen.exhausted and (time.time() - chosen.exhausted > TEST_TIMEOUT) and chosen.byname in self.fakegpslist:
-                        sys.stderr.write("Test timed out: increase WRITE_PAD = %s\n" % WRITE_PAD)
-                        raise SystemExit, 1
-                    elif not chosen.go_predicate(chosen.index, chosen):
-                        if chosen.exhausted == 0:
-                            chosen.exhausted = time.time()
-                            self.progress("gpsfake: GPS %s ran out of input\n" % chosen.byname)
+                    if isinstance(chosen, FakeGPS):
+                        if chosen.exhausted and (time.time() - chosen.exhausted > TEST_TIMEOUT) and chosen.byname in self.fakegpslist:
+                            sys.stderr.write("Test timed out: increase WRITE_PAD = %s\n" % WRITE_PAD)
+                            raise SystemExit, 1
+                        elif not chosen.go_predicate(chosen.index, chosen):
+                            if chosen.exhausted == 0:
+                                chosen.exhausted = time.time()
+                                self.progress("gpsfake: GPS %s ran out of input\n" % chosen.byname)
+                        else:
+                            chosen.feed(self.stop, self.manual)
+                    elif isinstance(chosen, gps.gps):
+                        if chosen.enqueued:
+                            chosen.send(chosen.enqueued)
+                            chosen.enqueued = ""
+                        while chosen.waiting():
+                            chosen.read()
+                            if chosen.valid & gps.PACKET_SET:
+                                self.reporter(chosen.response)
+                                if chosen.data["class"] == "DEVICE" and chosen.data["activated"] == 0 and chosen.data["path"] in self.fakegpslist:
+                                    self.gps_remove(chosen.data["path"])
+                                    self.progress("gpsfake: GPS %s removed (notification)\n" % chosen.data["path"])
+                            had_output = True
                     else:
-                        chosen.feed(self.stop, self.manual)
-                elif isinstance(chosen, gps.gps):
-                    if chosen.enqueued:
-                        chosen.send(chosen.enqueued)
-                        chosen.enqueued = ""
-                    while chosen.waiting():
-                        chosen.read()
-                        if chosen.valid & gps.PACKET_SET:
-                            self.reporter(chosen.response)
-                            if chosen.data["class"] == "DEVICE" and chosen.data["activated"] == 0 and chosen.data["path"] in self.fakegpslist:
-                                self.gps_remove(chosen.data["path"])
-                                self.progress("gpsfake: GPS %s removed (notification)\n" % chosen.data["path"])
-                        had_output = True
-                else:
-                    raise TestSessionError("test object of unknown type")
-                if not self.writers and not had_output:
-                    self.progress("gpsfake: no writers and no output\n")
-                    break
+                        raise TestSessionError("test object of unknown type")
+                    if not self.writers and not had_output:
+                        self.progress("gpsfake: no writers and no output\n")
+                        break
             self.progress("gpsfake: test loop ends\n")
         finally:
             self.cleanup()
