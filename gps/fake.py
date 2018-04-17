@@ -638,12 +638,13 @@ class TestSession:
                 obj.testload.sentences = newtestload.sentences
                 obj.index = 0
         elif "manual-begin" in command:
+            print "man begin"
             self.manual = True
             self.stop = True
-
+            return True
         elif "manual-end" in command:
             self.manual = False
-        elif self.manual and "GPGGA" in command and "GPRMC" in command:
+        elif self.manual and ("GPGGA" in command or "GPRMC" in command):
             if self.stop:
                 for obj in self.runqueue:
                     obj.testload.sentences = []
@@ -652,6 +653,7 @@ class TestSession:
             for obj in self.runqueue:
                 obj.testload.sentences.append(command)
                 obj.index = len(obj.testload.sentences) - 1
+            return False
 
 
 
@@ -659,7 +661,7 @@ class TestSession:
         "Run the tests."
         try:
             self.progress("gpsfake: test loop begins\n")
-            commandarrived = 0
+            commandarrived = -1
             while self.daemon:
                 # We have to read anything that gpsd might have tried
                 # to send to the GPS here -- under OpenBSD the
@@ -667,10 +669,10 @@ class TestSession:
 
                 if not self.queue.empty():
                     #print "Queue not empty"
-                    self.processingcommand()
-                    commandarrived = commandarrived + 1
-                    if commandarrived > 1:
-                        withoutfile = False
+                    withoutfile = self.processingcommand()
+                    #commandarrived = commandarrived + 1
+                    #if commandarrived > 1 and withoutfile:
+                        #withoutfile = False
 
                 if not withoutfile:
                     for device in self.runqueue:
